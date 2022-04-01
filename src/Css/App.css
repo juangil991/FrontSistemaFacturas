@@ -18,7 +18,7 @@
   .container-form1 {
     width: auto;
     height: auto;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Oswald', sans-serif;
     display: flex;
     justify-content: space-around;
     transition:  all .5s ease-out;
