@@ -30,7 +30,13 @@ const NavBar = () => {
                     <li>
                         <a>
                             <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-                            <span>Historial</span>
+                            <span>Facturas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a>
+                            <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
+                            <span>Volantes</span>
                         </a>
                     </li>
                 </ul>

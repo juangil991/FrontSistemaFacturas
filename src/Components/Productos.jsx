@@ -5,8 +5,9 @@ import fetchProductoGet from '../Actions/Producto/getProductoAction';
 
 
 
-const ProductoComponent = () => {
+const ProductoComponent = (props) => {
     const dispatch = useDispatch();
+    const producto=props.productos;
 
     useEffect(() => {
         dispatch(fetchProductoGet())
@@ -37,15 +38,19 @@ const ProductoComponent = () => {
                         </td>
                     </tr>
                 </tfoot>
-                <tbody className='has-background-link-dark'>
+                <tbody className='has-background-link-dark'>             
                     <tr>
-                        <th style={{ color: "white" }}>1</th>
-                        <td style={{ color: "white" }}>hola</td>
-                        <td style={{ color: "white" }}>como</td>
-                        <td style={{ color: "white" }}>estas</td>
+                        {producto.map((p)=>{
+                        return(<>
+                        <th style={{ color: "white" }}>{p.id}</th>
+                        <td style={{ color: "white" }}>{p.nombreProducto}</td>
+                        <td style={{ color: "white" }}>{p.cantidadProducto}</td>
+                        <td style={{ color: "white" }}>{p.precioProducto}</td>
                         <td style={{ color: "white" }}><button className="button is-dark">Añadir</button>
                             <button className="button is-danger">Eliminar</button>
                         </td>
+                        </>
+                        )})}
                     </tr>
                 </tbody>
             </table>
@@ -54,4 +59,11 @@ const ProductoComponent = () => {
     </>);
 }
 
-export default ProductoComponent;
+const stateMapToPros = state => {
+    return {
+        productos:state.getProductos.response
+    }
+}
+
+
+export default connect(stateMapToPros)(ProductoComponent)
