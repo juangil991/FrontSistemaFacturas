@@ -1,5 +1,7 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
+import 'boxicons'
+
 
 const Registrarse = (props) => {
     return (<div className="container-form singn-up">
@@ -29,6 +31,7 @@ const Registrarse = (props) => {
             <input type="text" placeholder='Nombre'/>
             <input type="email" placeholder='Email'/>
             <input type="password" placeholder='contraseña'/>
+            <span>Minimo 6 cararcteres</span>
             <input type="button" value="Registrarse"/>
         
     </form>

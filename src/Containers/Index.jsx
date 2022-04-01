@@ -4,14 +4,13 @@ import Ingresar from "../Components/Ingresar"
 
 import 'boxicons';
 
-const LoginContainer = () => {
+const AppContainer = () => {
 
     const[active,setActive]= useState(false);
 
     return (
         <> 
-        {active && <Registrarse active={active}/>}
-        {!active && <Ingresar active={active}/>}
+            <NavBar/>
         </>
     );
 }

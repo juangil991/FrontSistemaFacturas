@@ -1,5 +1,9 @@
 import React,{useState} from 'react';
 import {NavLink} from 'react-router-dom';
+import "../Css/App.css"
+import 'boxicons'
+
+
 
 const Ingresar = (props) => {
 
