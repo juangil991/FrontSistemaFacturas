@@ -3,16 +3,36 @@ import React from 'react'
 
 const NavBar = () => {
     return (<>
-        <nav class="navbar  navbar-dark bg-dark fixed-top" >
-            <div class="container-fluid" id='Font1'>
-                <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <a class="navbar-brand">SISTEMA DE FACTURACION</a>
-            </div>
+        <nav class="navbar is-black" >  
+                <div class="tabs is-centered is-boxed is-medium">
+                    <ul>
+                        <li class="is-active">
+                            <a>
+                                <span class="icon is-small"><i class="fas fa-cart-plus" aria-hidden="true"></i></span>
+                                <span>Venta</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="icon is-small"><i class="fas fa-basket-shopping" aria-hidden="true"></i></span>
+                                <span>Productos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="icon is-small"><i class="fas fa-shop" aria-hidden="true"></i></span>
+                                <span>Proovedores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
+                                <span>Historial</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>    
         </nav>
-
     </>);
 }
 
