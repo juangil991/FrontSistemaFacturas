@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useState} from 'react';
+import {NavLink} from 'react-router-dom';
 
 const Ingresar = (props) => {
+
     return (<div className="container-form singn-in">
             <form className='formulario'>
         <h2 className='create-account'>Iniciar Sesion</h2>
@@ -25,9 +27,9 @@ const Ingresar = (props) => {
         <div className="message">
             <h2>Bienvenido de nuevo</h2>
             <p>Sin no tienes cuenta registrate</p>
-            <button className='singn-in-btn' onClick={()=>{
-            }}
-            >Registrarse</button>
+            <NavLink to="/registrarse">
+            <button className='singn-in-btn'>Registrarse</button>
+            </NavLink>
         </div>
     </div>
 

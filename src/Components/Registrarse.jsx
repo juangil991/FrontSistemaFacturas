@@ -1,4 +1,5 @@
 import React from 'react';
+import {NavLink} from 'react-router-dom';
 
 const Registrarse = (props) => {
     return (<div className="container-form singn-up">
@@ -6,7 +7,9 @@ const Registrarse = (props) => {
         <div className="message">
             <h2>BIENVENDIDO AL SISTEMA DE FACTURAS</h2>
             <p>Inicia sesion si ya tienes una cuenta</p>
+            <NavLink to="/ingresar">
             <button className='singn-up-btn'>Iniciar Sesion</button>
+            </NavLink>
         </div>
     </div>
     <form className='formulario'>
@@ -26,7 +29,7 @@ const Registrarse = (props) => {
             <input type="text" placeholder='Nombre'/>
             <input type="email" placeholder='Email'/>
             <input type="password" placeholder='contraseña'/>
-            <input type="button" value="Registrarse" />
+            <input type="button" value="Registrarse"/>
         
     </form>
     </div>);

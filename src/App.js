@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
 import LoginContainer from './Containers/Login';
+import RoutesPath from './Routes';
 
 function App() {
   return (<div>
-    <LoginContainer/>
+      <RoutesPath/>
     </div>
   );
 }
