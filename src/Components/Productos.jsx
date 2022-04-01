@@ -25,19 +25,19 @@ const ProductoComponent = (props) => {
                         <th></th>
                     </tr>
                 </thead>
-                <tfoot className='has-background-link-dark'>
+                <thead className='has-background-link-dark'>
                     <tr>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><input class="input is-primary" type="text" placeholder="Nombre"/></td>
+                        <td><input class="input is-primary" type="number" placeholder="Cantidad"/></td>
+                        <td><input class="input is-primary" type="number" placeholder="Precio"/></td>
                         <td>
                             <button class="button is-success"data-target="modal-js-example">
                                Nuevo Producto
                             </button>
                         </td>
                     </tr>
-                </tfoot>
+                </thead>
                 <tbody className='has-background-link-dark'>             
                     <tr>
                         {producto.map((p)=>{
@@ -46,8 +46,10 @@ const ProductoComponent = (props) => {
                         <td style={{ color: "white" }}>{p.nombreProducto}</td>
                         <td style={{ color: "white" }}>{p.cantidadProducto}</td>
                         <td style={{ color: "white" }}>{p.precioProducto}</td>
-                        <td style={{ color: "white" }}><button className="button is-dark">Añadir</button>
-                            <button className="button is-danger">Eliminar</button>
+                        <td style={{ color: "white" }}>
+                            <button className="button is-dark" >Añadir</button>
+                            <button className="button is-danger" style={{left:'10px'}} >Eliminar</button>
+                            <button className="button is-link" style={{left:'20px'}}>Editar</button>
                         </td>
                         </>
                         )})}

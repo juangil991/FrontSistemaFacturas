@@ -26,7 +26,7 @@ const fetchProductoPut=(id)=>{
     return(dispatch)=>{
         dispatch(fetchGetProductoRequest(id));
         fetch(`http://localhost:8080/productos`,{
-            method: 'GET', // *GET, POST, PUT, DELETE, etc.
+            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'
             }
