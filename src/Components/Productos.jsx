@@ -2,16 +2,20 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import fetchProductoGet from '../Actions/Producto/getProductoAction';
+import fetchProductoPost from '../Actions/Producto/postProductoAction';
 
 
 
 const ProductoComponent = (props) => {
     const dispatch = useDispatch();
     const producto=props.productos;
+    const [Nombre,setNombre]=useState();
+    const [Cantidad,setCantidad]=useState();
+    const [Precio,setPrecio]=useState();
 
     useEffect(() => {
         dispatch(fetchProductoGet())
-    }, []);
+    }, [props.productos]);
 
     return (<>
         <div class="table-container">
@@ -28,20 +32,37 @@ const ProductoComponent = (props) => {
                 <thead className='has-background-link-dark'>
                     <tr>
                         <td></td>
-                        <td><input class="input is-primary" type="text" placeholder="Nombre"/></td>
-                        <td><input class="input is-primary" type="number" placeholder="Cantidad"/></td>
-                        <td><input class="input is-primary" type="number" placeholder="Precio"/></td>
+                        <td><input class="input is-primary" type="text" placeholder="Nombre"
+                        onChange={(e)=>{
+                            setNombre(e.target.value)
+                            console.log(Nombre);
+                        }}/></td>
+                        <td><input class="input is-primary" type="number" placeholder="Cantidad" onChange={(e)=>{
+                            setCantidad(e.target.value)
+                            console.log(Nombre);
+                        }}
+                        /></td>
+                        <td><input class="input is-primary" type="number" placeholder="Precio" 
+                        onChange={(e)=>{
+                            setPrecio(e.target.value);
+                            console.log.apply(Precio)
+                        }}
+                        /></td>
                         <td>
-                            <button class="button is-success"data-target="modal-js-example">
+                            <button class="button is-success"data-target="modal-js-example"
+                            onClick={()=>{
+                                dispatch(fetchProductoPost(Nombre,Cantidad,Precio));
+                            }}
+                            >
                                Nuevo Producto
                             </button>
                         </td>
                     </tr>
                 </thead>
                 <tbody className='has-background-link-dark'>             
-                    <tr>
                         {producto.map((p)=>{
                         return(<>
+                        <tr>
                         <th style={{ color: "white" }}>{p.id}</th>
                         <td style={{ color: "white" }}>{p.nombreProducto}</td>
                         <td style={{ color: "white" }}>{p.cantidadProducto}</td>
@@ -51,9 +72,9 @@ const ProductoComponent = (props) => {
                             <button className="button is-danger" style={{left:'10px'}} >Eliminar</button>
                             <button className="button is-link" style={{left:'20px'}}>Editar</button>
                         </td>
+                        </tr>
                         </>
                         )})}
-                    </tr>
                 </tbody>
             </table>
         </div>

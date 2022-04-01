@@ -22,7 +22,14 @@ export const fetchPutProductoError=(error)=>async(dispatch)=>{
 }
 
 
-const fetchProductoPut=(id)=>{
+const fetchProductoPut=(id,nombre,cantidad,precio)=>{
+    const request={
+        "id":id,
+        "nombreProducto":nombre,
+        "cantidadProducto":cantidad,
+        "precioProducto":precio
+
+    }
     return(dispatch)=>{
         dispatch(fetchGetProductoRequest(id));
         fetch(`http://localhost:8080/productos`,{
@@ -34,7 +41,7 @@ const fetchProductoPut=(id)=>{
         .then(json=>{
             dispatch(fetchGetProductoSuccess(json))
         }).catch(error=>{
-            dispatch(fetchGetProductoError("no se pudo eliminar el producto seleccionado"))
+            dispatch(fetchGetProductoError("no se pudo Actualizar producto seleccionado"))
         });
     }
 

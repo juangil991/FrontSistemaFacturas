@@ -35,7 +35,7 @@ const fetchProductoGet=(id)=>{
         .then(json=>{
             dispatch(fetchGetProductoSuccess(json))
         }).catch(error=>{
-            dispatch(fetchGetProductoError("no se pudo eliminar el producto seleccionado"))
+            dispatch(fetchGetProductoError("no se pudo Obtener los producto seleccionados"))
         });
     }
 

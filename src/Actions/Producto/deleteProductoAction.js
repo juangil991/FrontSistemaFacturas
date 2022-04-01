@@ -30,7 +30,6 @@ const fetchProductoDelete=(id)=>{
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(request)
         }).then(Response=>{
             dispatch(fetchdeleteProductoSuccess(Response.json))
         }).catch(error=>{

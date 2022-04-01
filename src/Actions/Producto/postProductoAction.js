@@ -22,19 +22,26 @@ export const fetchPostProductoError=(error)=>async(dispatch)=>{
 }
 
 
-const fetchProductoPost=(id)=>{
+const fetchProductoPost=(nombre,cantidad,precio)=>{
+    const request={
+        "nombreProducto":nombre,
+        "cantidadProducto":cantidad,
+        "precioProducto":precio
+
+    }
     return(dispatch)=>{
-        dispatch(fetchGetProductoRequest(id));
-        fetch(`http://localhost:8080/productos`,{
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        dispatch(fetchPostProductoRequest(request));
+        fetch(`http://localhost:8080/producto/Save`,{
+            method: 'POST', // *Post, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(request)
         }).then(Response=>Response.json())
         .then(json=>{
-            dispatch(fetchGetProductoSuccess(json))
+            dispatch(fetchPostProductoSuccess(json))
         }).catch(error=>{
-            dispatch(fetchGetProductoError("no se pudo eliminar el producto seleccionado"))
+            dispatch(fetchPostProductoError("no se pudo crear el producto seleccionado"))
         });
     }
 

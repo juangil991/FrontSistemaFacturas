@@ -1,4 +1,4 @@
-import {getProducto_ActionType} from "../Constans/Productos";
+import {postFactura_ActionType} from "../../Constans/Factura";
 
 
 const INITIAL_STATE={
@@ -8,22 +8,22 @@ const INITIAL_STATE={
 
 }
 
-const getProductos=(state= INITIAL_STATE,action)=>{
+const postFactura=(state= INITIAL_STATE,action)=>{
     switch(action.type){
-        case getProducto_ActionType.GET_PRODUCTO_REQUEST:
+        case postFactura_ActionType.POST_FACTURA_REQUEST:
             return{
                 ...state,
                 url:action.result
                 
             }
-        case getProducto_ActionType.GET_PRODUCTO_SUCCESS:
+        case postFactura_ActionType.POST_FACTURA_SUCCESS:
             return{
                 ...state,
                 response: action.result,
                 error:'',
               
             }
-        case getProducto_ActionType.GET_PRODUCTO_FAILURE:
+        case postFactura_ActionType.POST_FACTURA_FAILURE:
             return{
                 ...state,
                 response:[],
@@ -34,4 +34,4 @@ const getProductos=(state= INITIAL_STATE,action)=>{
 
 }
 
-export default getProductos;
+export default postFactura;
