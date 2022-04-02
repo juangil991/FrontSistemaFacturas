@@ -4,9 +4,10 @@ import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
     return (<>
-       <div class="table-responsive">
+      
         <nav class="navbar is-black" >
             <div class="tabs is-centered is-boxed is-medium">
+            <div class="table-responsive">
                 <ul>
                     <NavLink style={{color:'white'}} to="/Venta">
                         <li>
@@ -49,9 +50,9 @@ const NavBar = () => {
                     </li>
                     </NavLink>
                 </ul>
+                </div>
             </div>
         </nav>
-        </div>
     </>);
 }
 

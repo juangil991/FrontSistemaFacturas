@@ -62,8 +62,8 @@ const venta2 = (props) => {
             selector: row => row.precioProducto
         },
         {
-            name: '',
-            selector: row => row.relleno
+            name: 'TOTAL',
+            selector: row => props.total
         }
 
     ]
@@ -85,7 +85,8 @@ const venta2 = (props) => {
 
 const stateMapToPros = state => {
     return {
-        productos: state.agregarProductoFactura.response
+        productos: state.agregarProductoFactura.response,
+        total:state.agregarProductoFactura.total
     }
 }
 

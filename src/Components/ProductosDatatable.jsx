@@ -9,6 +9,7 @@ import DataTable, { createTheme } from 'react-data-table-component';
 
 const ProductosDatatable = (props) => {
     const dispatch = useDispatch();
+    const [cantidad,setCantidad]=useState();
     useEffect(() => {
         dispatch(fetchProductoGet())
     }, [])
@@ -32,11 +33,20 @@ const ProductosDatatable = (props) => {
             selector: row => row.precioProducto
         },
         {
+            name: 'CANTIDAD', 
+            selector: row=><div>
+            <td><input class="input is-primary" type="number" 
+            onChange={(e)=>{
+                setCantidad(e.target.value)
+            }}
+            /></td></div>
+        },
+        {
             name: 'AÑADIR PRODUCTO',
             selector: row =><button class="input is-primary"
             onClick={()=>{
-                console.log(row);
-                dispatch(props.addProductoFactura(row));
+             
+                dispatch(props.addProductoFactura(row,cantidad));
             }}
             >
                 <a><i class="fa-solid fa-circle-plus"></i></a>
@@ -61,7 +71,8 @@ const ProductosDatatable = (props) => {
 
 const stateMapToPros = state => {
     return {
-        productos: state.getProductos.response
+        productos: state.getProductos.response,
+        estado:state.agregarProductoFactura
     }
 }
 
