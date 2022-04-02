@@ -145,4 +145,32 @@
 
   }
 
+.rdt_Table{
+background-color: #4a4aee;
+color: #fff;
+}
+.rdt_TableRow{
+  background-color: #040444;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Oswald', sans-serif;
+  font-size: larger;
+}
+.rdt_TableCol{
+  background-image: url(../img/1.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
+.rdt_TableCell{
+  background-color: #0e1120;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
+}
+
   
