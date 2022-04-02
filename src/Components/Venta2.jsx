@@ -6,6 +6,7 @@ import DataTable, { createTheme } from 'react-data-table-component';
 
 const venta2 = (props) => {
 
+
     const columns = [
         {
             name: 'CONCEPTO',
@@ -63,7 +64,7 @@ const venta2 = (props) => {
         },
         {
             name: 'TOTAL',
-            selector: row => props.total
+            selector: row => row.totalProducto
         }
 
     ]
@@ -85,7 +86,7 @@ const venta2 = (props) => {
 
 const stateMapToPros = state => {
     return {
-        productos: state.agregarProductoFactura.response,
+        productos: state.agregarProductoFactura.productos,
         total:state.agregarProductoFactura.total
     }
 }
