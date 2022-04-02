@@ -46,9 +46,8 @@ const ProductosDatatable = (props) => {
         },
         {
             name: 'AÑADIR PRODUCTO',
-            selector: row =><NavLink to="/Venta"><button class="input is-primary"
-            onClick={()=>{
-             
+            selector: row =><NavLink to="/Venta"><button class="button is-link"
+            onClick={()=>{     
                 dispatch(props.fetchProductoRestarCantidad(row.id,row,cantidad));
             }}
             >

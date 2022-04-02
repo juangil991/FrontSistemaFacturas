@@ -1,9 +1,9 @@
 import { postFactura_ActionType as ActionType } from "../../Constans/Factura";
 
-export const fetchPostFacturaRequest=(url)=>async(dispatch)=>{
+export const fetchPostFacturaRequest=()=>async(dispatch)=>{
     dispatch({
         type: ActionType.POST_FACTURA_REQUEST,
-        result: url
+        result: "REQUESTING"
     })
 }
 
@@ -22,19 +22,29 @@ export const fetchPostFacturaError=(error)=>async(dispatch)=>{
 }
 
 
-const fetchFacturaPost=(id)=>{
+const fetchFacturaPost=(nombre,documento,nombreCajero,fecha,productos,total)=>{
+    const request={
+        "documentoCliente":documento,
+        "fecha":fecha,
+        "nombreCajero":nombreCajero,
+        "nombreCliente":nombre,
+        "productos":productos,
+        "total":total
+
+    }
     return(dispatch)=>{
-        dispatch(fetchGetFacturaRequest(id));
-        fetch(`http://localhost:8080/Facturas`,{
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        dispatch(fetchPostFacturaRequest());
+        fetch(`http://localhost:8080/factura/save`,{
+            method: 'POST', // *Post, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(request)
         }).then(Response=>Response.json())
         .then(json=>{
-            dispatch(fetchGetFacturaSuccess(json))
+            dispatch(fetchPostFacturaSuccess(json))
         }).catch(error=>{
-            dispatch(fetchGetFacturaError("no se pudo eliminar el Factura seleccionado"))
+            dispatch(fetchPostFacturaError("no se pudo eliminar el Factura seleccionado"))
         });
     }
 
