@@ -77,7 +77,7 @@ const Venta2 = (props) => {
                 dispatch(props.fetchProductoAddCantidades(row.id,row,row.cantidadProducto));
             }}
             >
-                <a><i class="fa-solid fa-circle-plus"></i></a>
+                <a><i class="fa-solid fa-trash-can"></i></a>
             </button></NavLink>
         }
 

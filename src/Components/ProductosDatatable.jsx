@@ -10,7 +10,7 @@ import { NavLink } from 'react-router-dom';
 
 const ProductosDatatable = (props) => {
     const dispatch = useDispatch();
-    const [cantidad,setCantidad]=useState();
+    const [cantidad,setCantidad]=useState(1);
     useEffect(() => {
         dispatch(fetchProductoGet())
     }, [])
@@ -38,7 +38,7 @@ const ProductosDatatable = (props) => {
             selector: row=><div>
             <td><input defaultValue={1} class="input is-primary" type="number" 
             onChange={(e)=>{
-                e.target.value>0?setCantidad(e.target.value):e.target.value=1
+                e.target.value>0?setCantidad(e.target.value):setCantidad(1)
                 e.target.value<row.cantidadProducto?setCantidad(e.target.value):e.target.value=row.cantidadProducto
                 console.log(row.cantidadProducto)            
             }}

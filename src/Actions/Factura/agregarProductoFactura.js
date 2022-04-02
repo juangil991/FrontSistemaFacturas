@@ -9,10 +9,11 @@ export const addProductoFactura=(producto,cantidad)=>async(dispatch)=>{
     })
 }
 
-export const removeProductoFactura=(producto)=>async(dispatch)=>{
+export const removeProductoFactura=(producto,cantidad)=>async(dispatch)=>{
     dispatch({
         type: ActionType.REMOVE_PRODUCTO_FACTURA,
         result: producto,
+        cantidad:parseInt(cantidad),
         
     })
 }
@@ -48,7 +49,7 @@ export const fetchProductoAddCantidades=(id,producto,cantidad)=>{
             },
             body: JSON.stringify(request)
         }).then(Response=>{
-            dispatch(dispatch(addProductoFactura(producto,cantidad)))
+            dispatch(dispatch(removeProductoFactura(producto,cantidad)))
         });
     }
 
