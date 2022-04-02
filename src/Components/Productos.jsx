@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import fetchProductoGet from '../Actions/Producto/getProductoAction';
 import fetchProductoPost from '../Actions/Producto/postProductoAction';
+import {addProductoFactura} from '../Actions/Factura/agregarProductoFactura';
+import { NavLink } from 'react-router-dom';
 
 
 
@@ -14,8 +16,9 @@ const ProductoComponent = (props) => {
     const [Precio,setPrecio]=useState();
 
     useEffect(() => {
+        console.log(producto)
         dispatch(fetchProductoGet())
-    }, [props.productos]);
+    }, []);
 
     return (<>
         <div class="table-container">
@@ -48,14 +51,14 @@ const ProductoComponent = (props) => {
                             console.log.apply(Precio)
                         }}
                         /></td>
-                        <td>
+                        <td>                        
                             <button class="button is-success"data-target="modal-js-example"
                             onClick={()=>{
                                 dispatch(fetchProductoPost(Nombre,Cantidad,Precio));
                             }}
                             >
                                Nuevo Producto
-                            </button>
+                            </button>                 
                         </td>
                     </tr>
                 </thead>
@@ -68,7 +71,12 @@ const ProductoComponent = (props) => {
                         <td style={{ color: "white" }}>{p.cantidadProducto}</td>
                         <td style={{ color: "white" }}>{p.precioProducto}</td>
                         <td style={{ color: "white" }}>
-                            <button className="button is-dark" >Añadir</button>
+                            <button className="button is-dark" 
+                            onClick={()=>{
+                                console.log(p);
+                                dispatch(props.addProductoFactura(p));
+                            }}
+                            >Añadir</button>
                             <button className="button is-danger" style={{left:'10px'}} >Eliminar</button>
                             <button className="button is-link" style={{left:'20px'}}>Editar</button>
                         </td>
@@ -88,5 +96,9 @@ const stateMapToPros = state => {
     }
 }
 
+const mapDispatchToProps = () => ({
+    addProductoFactura
+})
 
-export default connect(stateMapToPros)(ProductoComponent)
+
+export default connect(stateMapToPros,mapDispatchToProps)(ProductoComponent)

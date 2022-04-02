@@ -4,7 +4,8 @@ import 'boxicons'
 
 
 const Registrarse = (props) => {
-    return (<div className="container-form1 singn-up1">
+    return (<>
+    <div className="container-form1 singn-up1">
     <div className="welcome-back1">
         <div className="message1">
             <h2>BIENVENDIDO AL SISTEMA DE FACTURAS</h2>
@@ -23,7 +24,8 @@ const Registrarse = (props) => {
             <span>Minimo 6 cararcteres</span>
             <input type="button" value="Registrarse"/>       
     </form>
-    </div>);
+    </div>
+    </>);
 }
  
 export default Registrarse;

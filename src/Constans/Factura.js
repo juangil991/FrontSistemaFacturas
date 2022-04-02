@@ -9,7 +9,7 @@ export const postFactura_ActionType = {
     POST_FACTURA_SUCCESS:'POST_FACTURA_SUCCESS',
     POST_FACTURA_FAILURE:'POST_FACTURA_FAILURE'
  }
-
+ 
  export const putFactura_ActionType = {
     PUT_FACTURA_REQUEST:'PUT_FACTURA_REQUEST',
     PUT_FACTURA_SUCCESS:'PUT_FACTURA_SUCCESS',
@@ -22,4 +22,8 @@ export const postFactura_ActionType = {
     DELETE_FACTURA_FAILURE:'DELETE_FACTURA_FAILURE'
  }
 
- export default{getFactura_ActionType, postFactura_ActionType, putFactura_ActionType, deleteFactura_ActionType}
+ export const añadirProductoFactura_ActionType ={
+     ADD_PRODUCTO_FACTURA:"ADD_PRODUCTO_FACTURA"
+ }
+
+ export default{getFactura_ActionType, postFactura_ActionType, putFactura_ActionType, deleteFactura_ActionType,  añadirProductoFactura_ActionType}

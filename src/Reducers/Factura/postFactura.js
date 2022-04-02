@@ -2,6 +2,7 @@ import {postFactura_ActionType} from "../../Constans/Factura";
 
 
 const INITIAL_STATE={
+    productos:[],
     response: [],
     error:'',
     url:""
