@@ -23,7 +23,8 @@ export const postFactura_ActionType = {
  }
 
  export const añadirProductoFactura_ActionType ={
-     ADD_PRODUCTO_FACTURA:"ADD_PRODUCTO_FACTURA"
+     ADD_PRODUCTO_FACTURA:"ADD_PRODUCTO_FACTURA",
+     REMOVE_PRODUCTO_FACTURA:"REMOVE_PRODUCTO_FACTURA"
  }
 
  export default{getFactura_ActionType, postFactura_ActionType, putFactura_ActionType, deleteFactura_ActionType,  añadirProductoFactura_ActionType}

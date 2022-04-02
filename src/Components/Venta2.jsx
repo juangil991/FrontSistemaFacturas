@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
+import { NavLink } from 'react-router-dom';
 
-const venta2 = (props) => {
-
-
+const Venta2 = (props) => {
+    
     const columns = [
         {
             name: 'CONCEPTO',
@@ -21,9 +21,10 @@ const venta2 = (props) => {
             selector: row => row.cantidad
         },
         {
-            name: '',
+            name:<NavLink to="/productos2"><button class="button is-light">AGREGAR PRODUCTOS</button></NavLink>,
             selector: row => row.precioProducto
-        }
+        },
+       
 
     ]
 
@@ -69,6 +70,31 @@ const venta2 = (props) => {
 
     ]
 
+    const column3 = [
+        {
+            name: 'TOTAL PRODUCTOS',
+            
+        },     {
+            name: '',
+        
+        },
+        {
+            name: '',
+            
+        },
+        {
+            name: '',
+            selector: row => row.total
+        }
+
+    ]
+
+    const data3 = [
+        {
+            total:props.total
+        }
+    ]
+
     return (<>
 
         <div class="table-responsive">
@@ -80,6 +106,11 @@ const venta2 = (props) => {
                 columns={column2}
                 data={props.productos}
             />}
+             {props.productos.length>0 &&  <DataTable
+                columns={column3}
+                data={data3}
+            />}
+            
         </div>
     </>);
 }
@@ -92,4 +123,4 @@ const stateMapToPros = state => {
 }
 
 
-export default connect(stateMapToPros)(venta2)
+export default connect(stateMapToPros)(Venta2)

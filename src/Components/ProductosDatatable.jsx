@@ -3,9 +3,10 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import fetchProductoGet from '../Actions/Producto/getProductoAction';
 import fetchProductoPost from '../Actions/Producto/postProductoAction';
-import { addProductoFactura } from '../Actions/Factura/agregarProductoFactura';
+import  fetchProductoActualizarCantidad  from '../Actions/Factura/agregarProductoFactura';
 import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
+import { NavLink } from 'react-router-dom';
 
 const ProductosDatatable = (props) => {
     const dispatch = useDispatch();
@@ -35,22 +36,24 @@ const ProductosDatatable = (props) => {
         {
             name: 'CANTIDAD', 
             selector: row=><div>
-            <td><input class="input is-primary" type="number" 
+            <td><input defaultValue={1} class="input is-primary" type="number" 
             onChange={(e)=>{
-                setCantidad(e.target.value)
+                e.target.value>0?setCantidad(e.target.value):e.target.value=1
+                e.target.value<row.cantidadProducto?setCantidad(e.target.value):e.target.value=row.cantidadProducto
+                console.log(row.cantidadProducto)            
             }}
             /></td></div>
         },
         {
             name: 'AÑADIR PRODUCTO',
-            selector: row =><button class="input is-primary"
+            selector: row =><NavLink to="/Venta"><button class="input is-primary"
             onClick={()=>{
              
-                dispatch(props.addProductoFactura(row,cantidad));
+                dispatch(props.fetchProductoActualizarCantidad(row.id,row,cantidad));
             }}
             >
                 <a><i class="fa-solid fa-circle-plus"></i></a>
-            </button>
+            </button></NavLink>
         },
         {
             name: 'ELIMINAR PRODUCTO',
@@ -77,7 +80,7 @@ const stateMapToPros = state => {
 }
 
 const mapDispatchToProps = () => ({
-    addProductoFactura
+    fetchProductoActualizarCantidad
 })
 
 
