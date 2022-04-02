@@ -24,12 +24,29 @@ const ProductosDatatable = (props) => {
             selector: row => row.nombreProducto
         },
         {
-            name: 'CANTIDAD',
+            name: 'STOCK',
             selector: row => row.cantidadProducto
         },
         {
             name: 'PRECIO',
             selector: row => row.precioProducto
+        },
+        {
+            name: 'AÑADIR PRODUCTO',
+            selector: row =><button class="input is-primary"
+            onClick={()=>{
+                console.log(row);
+                dispatch(props.addProductoFactura(row));
+            }}
+            >
+                <a><i class="fa-solid fa-circle-plus"></i></a>
+            </button>
+        },
+        {
+            name: 'ELIMINAR PRODUCTO',
+            selector: row =><button class="input is-primary">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
         }
     ]
     return (<>
@@ -48,5 +65,9 @@ const stateMapToPros = state => {
     }
 }
 
+const mapDispatchToProps = () => ({
+    addProductoFactura
+})
 
-export default connect(stateMapToPros)(ProductosDatatable)
+
+export default connect(stateMapToPros,mapDispatchToProps)(ProductosDatatable)

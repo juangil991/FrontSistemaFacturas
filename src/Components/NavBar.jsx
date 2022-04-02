@@ -7,7 +7,7 @@ const NavBar = () => {
         <nav class="navbar is-black" >
             <div class="tabs is-centered is-boxed is-medium">
                 <ul>
-                    <NavLink style={{color:'white'}} to="/productos">
+                    <NavLink style={{color:'white'}} to="/Venta">
                         <li>
                             <a>
                                 <span class="icon is-small"><i class="fas fa-cart-plus" aria-hidden="true"></i></span>
@@ -15,30 +15,38 @@ const NavBar = () => {
                             </a>
                         </li>
                     </NavLink>
+                    <NavLink style={{color:'white'}} to="/productos2">
                     <li>
                         <a>
                             <span class="icon is-small"><i class="fas fa-basket-shopping" aria-hidden="true"></i></span>
                             <span>Productos</span>
                         </a>
                     </li>
+                    </NavLink>
+                    <NavLink style={{color:'white'}} to="/productos">
                     <li>
                         <a>
                             <span class="icon is-small"><i class="fas fa-shop" aria-hidden="true"></i></span>
                             <span>Proovedores</span>
                         </a>
                     </li>
+                    </NavLink>
+                    <NavLink style={{color:'white'}} to="/productos">
                     <li>
                         <a>
                             <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
                             <span>Facturas</span>
                         </a>
                     </li>
+                    </NavLink>
+                    <NavLink style={{color:'white'}} to="/productos">
                     <li>
                         <a>
                             <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
                             <span>Volantes</span>
                         </a>
                     </li>
+                    </NavLink>
                 </ul>
             </div>
         </nav>
