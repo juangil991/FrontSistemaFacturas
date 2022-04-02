@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 const NavBar = () => {
     return (<>
+       <div class="table-responsive">
         <nav class="navbar is-black" >
             <div class="tabs is-centered is-boxed is-medium">
                 <ul>
@@ -50,6 +51,7 @@ const NavBar = () => {
                 </ul>
             </div>
         </nav>
+        </div>
     </>);
 }
 

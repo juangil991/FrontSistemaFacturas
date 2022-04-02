@@ -27,10 +27,25 @@ const venta2 = (props) => {
     ]
 
     const data = [
-        { name: 'Nombre del Cliente', input: <input class="input is-primary" type="text" /> },
-        { name: 'Documento Cliente', input: <input class="input is-primary" type="text" /> },
-        { name: 'Nombre del Cajero', input: <input class="input is-primary" type="text" /> },
-        { name: 'Nombre del Cajero', input: <input class="input is-primary" type="text" /> },
+        {
+            name: 'Nombre del Cliente', input: <div>
+                <td><input class="input is-primary" type="text" style={{width:'300px'}} /></td></div>
+        },
+
+        {
+            name: 'Documento Cliente', input: <div>
+            <td><input class="input is-primary" type="text" style={{width:'300px'}} /></td></div>
+        },
+
+        {
+            name: 'Nombre del Cajero', input: <div>
+            <td><input class="input is-primary" type="text" style={{width:'300px'}} /></td></div>
+        },
+
+        {
+            name: 'Nombre del Cajero', input:<div>
+            <td><input class="input is-primary" type="text" style={{width:'300px'}} /></td></div>
+        },
     ]
 
     const column2 = [
@@ -48,21 +63,23 @@ const venta2 = (props) => {
         },
         {
             name: '',
-            selector: row => row.relleno}
- 
+            selector: row => row.relleno
+        }
+
     ]
 
-
     return (<>
-        <DataTable
-            columns={columns}
-            data={data}
-        />
-        <DataTable
-            columns={column2}
-            data={props.productos}
-        />
 
+        <div class="table-responsive">
+            <DataTable
+                columns={columns}
+                data={data}
+            />
+          {props.productos.length>0 &&  <DataTable
+                columns={column2}
+                data={props.productos}
+            />}
+        </div>
     </>);
 }
 

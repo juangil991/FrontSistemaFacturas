@@ -13,8 +13,8 @@ const deleteFactura=(state= INITIAL_STATE,action)=>{
         case deleteFactura_ActionType.DELETE_FACTURA_REQUEST:
             return{
                 ...state,
-                url:action.result
-                
+                url:action.result,
+            
             }
         case deleteFactura_ActionType.DELETE_FACTURA_SUCCESS:
             return{
