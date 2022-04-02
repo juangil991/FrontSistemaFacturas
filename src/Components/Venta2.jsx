@@ -4,9 +4,11 @@ import { useDispatch } from 'react-redux';
 import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
+import  {fetchProductoAddCantidades } from '../Actions/Factura/agregarProductoFactura';
+
 
 const Venta2 = (props) => {
-    
+    const dispatch = useDispatch();
     const columns = [
         {
             name: 'CONCEPTO',
@@ -66,6 +68,17 @@ const Venta2 = (props) => {
         {
             name: 'TOTAL',
             selector: row => row.totalProducto
+        },
+        {
+            name: 'ELIMINAR PRODUCTOS',
+            selector: row =><NavLink to="/Venta"><button class="input is-primary"
+            onClick={()=>{
+             
+                dispatch(props.fetchProductoAddCantidades(row.id,row,row.cantidadProducto));
+            }}
+            >
+                <a><i class="fa-solid fa-circle-plus"></i></a>
+            </button></NavLink>
         }
 
     ]
@@ -121,6 +134,8 @@ const stateMapToPros = state => {
         total:state.agregarProductoFactura.total
     }
 }
+const mapDispatchToProps = () => ({
+    fetchProductoAddCantidades
+})
 
-
-export default connect(stateMapToPros)(Venta2)
+export default connect(stateMapToPros,mapDispatchToProps)(Venta2)

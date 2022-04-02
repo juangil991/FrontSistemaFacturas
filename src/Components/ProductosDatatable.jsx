@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import fetchProductoGet from '../Actions/Producto/getProductoAction';
 import fetchProductoPost from '../Actions/Producto/postProductoAction';
-import  fetchProductoActualizarCantidad  from '../Actions/Factura/agregarProductoFactura';
+import  {fetchProductoRestarCantidad } from '../Actions/Factura/agregarProductoFactura';
 import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
@@ -49,18 +49,12 @@ const ProductosDatatable = (props) => {
             selector: row =><NavLink to="/Venta"><button class="input is-primary"
             onClick={()=>{
              
-                dispatch(props.fetchProductoActualizarCantidad(row.id,row,cantidad));
+                dispatch(props.fetchProductoRestarCantidad(row.id,row,cantidad));
             }}
             >
                 <a><i class="fa-solid fa-circle-plus"></i></a>
             </button></NavLink>
         },
-        {
-            name: 'ELIMINAR PRODUCTO',
-            selector: row =><button class="input is-primary">
-                <i class="fa-solid fa-trash-can"></i>
-            </button>
-        }
     ]
     return (<>
     <DataTable
@@ -80,7 +74,7 @@ const stateMapToPros = state => {
 }
 
 const mapDispatchToProps = () => ({
-    fetchProductoActualizarCantidad
+    fetchProductoRestarCantidad
 })
 
 

@@ -17,7 +17,7 @@ export const removeProductoFactura=(producto)=>async(dispatch)=>{
     })
 }
 
-const fetchProductoActualizarCantidad=(id,producto,cantidad)=>{
+export const fetchProductoRestarCantidad=(id,producto,cantidad)=>{
     const request={
         "id":id,
         "cantidad":parseInt(cantidad),
@@ -33,8 +33,26 @@ const fetchProductoActualizarCantidad=(id,producto,cantidad)=>{
             dispatch(dispatch(addProductoFactura(producto,cantidad)))
         });
     }
+}
+
+export const fetchProductoAddCantidades=(id,producto,cantidad)=>{
+    const request={
+        "id":id,
+        "cantidad":parseInt(cantidad),
+    }
+    return(dispatch)=>{
+        fetch(`http://localhost:8080/producto/${id}/comprar?cantidad=${cantidad}`,{
+            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(request)
+        }).then(Response=>{
+            dispatch(dispatch(addProductoFactura(producto,cantidad)))
+        });
+    }
 
 }
 
 
-export default fetchProductoActualizarCantidad;
+export default({fetchProductoRestarCantidad,fetchProductoAddCantidades})
