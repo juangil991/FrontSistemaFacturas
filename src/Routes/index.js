@@ -6,6 +6,7 @@ import ProductoComponent from "../Components/Productos";
 import VentaComponent from "../Components/Venta";
 import ProductosDatatable from "../Components/ProductosDatatable";
 import Venta2 from "../Components/Venta2";
+import Volantes from "../Components/Volantes";
 
 export const RoutesPath = () => {
   return (
@@ -17,7 +18,9 @@ export const RoutesPath = () => {
         <Route path="/venta" element={<Venta2 />} />
         <Route path="/ingresar" element={<Ingresar />} />
         <Route path="/registrarse" element={<Registrarse />} />
+        <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/productos" element={<ProductoComponent />} />
+        <Route path="/provedor" element={<Volantes />}/>
       </Routes>
     </BrowserRouter>
   );

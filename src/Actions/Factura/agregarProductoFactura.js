@@ -18,6 +18,13 @@ export const removeProductoFactura=(producto,cantidad)=>async(dispatch)=>{
     })
 }
 
+export const removeAllProductoFactura=()=>async(dispatch)=>{
+    dispatch({
+        type: ActionType.REMOVE_ALL_FACTURA,
+        
+    })
+}
+
 export const fetchProductoRestarCantidad=(id,producto,cantidad)=>{
     const request={
         "id":id,
@@ -56,4 +63,4 @@ export const fetchProductoAddCantidades=(id,producto,cantidad)=>{
 }
 
 
-export default({fetchProductoRestarCantidad,fetchProductoAddCantidades})
+export default({fetchProductoRestarCantidad,fetchProductoAddCantidades, removeAllProductoFactura})

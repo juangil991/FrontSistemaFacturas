@@ -22,6 +22,11 @@ export const postProducto_ActionType = {
     DELETE_PRODUCTO_FAILURE:'DELETE_PRODUCTO_FAILURE'
  }
 
+ export const menu_ActionType={
 
+    PRODUCTO_MENU_INVENTARIO:'PRODUCTO_MENU_INVENTARIO'
+
+ }
   
+
  export default {getProducto_ActionType, postProducto_ActionType, deleteProducto_ActionType, putProducto_ActionType}

@@ -28,6 +28,12 @@ const agregarProductoFactura = (state = INITIAL_STATE, action) => {
         total:state.total-action.cantidad*action.result.precioProducto
       
       };
+      case añadirProductoFactura_ActionType.REMOVE_ALL_FACTURA:
+        return {
+         productos:[], 
+        total:0
+      
+      };
     default:
       return state;
   }

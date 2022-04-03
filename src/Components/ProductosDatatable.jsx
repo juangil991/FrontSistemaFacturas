@@ -36,23 +36,23 @@ const ProductosDatatable = (props) => {
         {
             name: 'CANTIDAD', 
             selector: row=><div>
-            <td><input defaultValue={1} class="input is-primary" type="number" 
+            <td>{props.tipo==="factura" && <input defaultValue={1} class="input is-primary" type="number" 
             onChange={(e)=>{
                 e.target.value>0?setCantidad(e.target.value):setCantidad(1)
                 e.target.value<row.cantidadProducto?setCantidad(e.target.value):e.target.value=row.cantidadProducto
-                console.log(row.cantidadProducto)            
+                console.log(props.tipo)            
             }}
-            /></td></div>
+            />}</td></div>
         },
         {
             name: 'AÑADIR PRODUCTO',
-            selector: row =><NavLink to="/Venta"><button class="button is-link"
+            selector: row =><NavLink to="/Venta">{props.tipo==="factura" && <button class="button is-link"
             onClick={()=>{     
                 dispatch(props.fetchProductoRestarCantidad(row.id,row,cantidad));
             }}
             >
                 <a><i class="fa-solid fa-circle-plus"></i></a>
-            </button></NavLink>
+            </button>}</NavLink>
         },
     ]
     return (<>
@@ -68,7 +68,8 @@ const ProductosDatatable = (props) => {
 const stateMapToPros = state => {
     return {
         productos: state.getProductos.response,
-        estado:state.agregarProductoFactura
+        estado:state.agregarProductoFactura,
+        tipo:state.productosMenu.menuTypo
     }
 }
 

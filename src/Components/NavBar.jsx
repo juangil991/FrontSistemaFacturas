@@ -25,7 +25,7 @@ const NavBar = () => {
                         </a>
                     </li>
                     </NavLink>
-                    <NavLink style={{color:'white'}} to="/productos">
+                    <NavLink style={{color:'white'}} to="/provedor">
                     <li>
                         <a>
                             <span class="icon is-small"><i class="fas fa-shop" aria-hidden="true"></i></span>

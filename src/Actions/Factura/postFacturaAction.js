@@ -1,4 +1,5 @@
 import { postFactura_ActionType as ActionType } from "../../Constans/Factura";
+import { removeAllProductoFactura} from "./agregarProductoFactura";
 
 export const fetchPostFacturaRequest=()=>async(dispatch)=>{
     dispatch({
@@ -43,7 +44,8 @@ const fetchFacturaPost=(nombre,documento,nombreCajero,fecha,productos,total)=>{
         }).then(Response=>Response.json())
         .then(json=>{
             dispatch(fetchPostFacturaSuccess(json))
-        }).catch(error=>{
+        }).then(dispatch(removeAllProductoFactura()))
+        .catch(error=>{
             dispatch(fetchPostFacturaError("no se pudo eliminar el Factura seleccionado"))
         });
     }
