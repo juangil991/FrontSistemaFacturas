@@ -9,10 +9,12 @@ import productosMenu from "./Productos/productosMenu"
 import productoVolante from "./Volante/productoVolante";
 import getFactura from "./Factura/getFactura";
 import detalleFactura from "./Factura/detalleFactura";
+import getVolante from "./Volante/getVolante";
+
 
 const rootReducers=combineReducers({
     getProductos, deleteProductos,postProductos,putProductos,agregarProductoFactura,postFactura,
-    productosMenu, productoVolante,getFactura,detalleFactura
+    productosMenu, productoVolante,getFactura,detalleFactura,getVolante
 
 });
 

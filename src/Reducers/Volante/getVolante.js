@@ -1,4 +1,4 @@
-import {getVolante_ActionType} from "../../Constans/volante";
+import {getVolante_ActionType} from "../../Constans/Volante";
 
 
 const INITIAL_STATE={

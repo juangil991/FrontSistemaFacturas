@@ -26,7 +26,7 @@ export const fetchGetVolanteError=(error)=>async(dispatch)=>{
 const fetchVolanteGet=(id)=>{
     return(dispatch)=>{
         dispatch(fetchGetVolanteRequest(id));
-        fetch(`http://localhost:8080/Volantes`,{
+        fetch(`http://localhost:8080/volantes`,{
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'

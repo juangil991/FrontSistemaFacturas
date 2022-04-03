@@ -76,6 +76,7 @@ const ProductosDatatable = (props) => {
         },
     ]
     return (<>
+    <b style={{ color: 'black', fontSize: '40px', fontFamily: 'Oswald sans-serif' }}>PRODUCTOS</b>
         <DataTable
             columns={columns}
             data={props.productos}

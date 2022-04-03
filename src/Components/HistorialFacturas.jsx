@@ -57,6 +57,7 @@ const ProductosDatatable = (props) => {
         
     ]
     return (<>
+    <b style={{ color: 'black', fontSize: '40px', fontFamily: 'Oswald sans-serif' }}>FACTURAS</b>
         <DataTable
             columns={columns}
             data={props.facturas}
