@@ -5,6 +5,7 @@ import fetchVolanteGet from '../Actions/Volantes/getVolanteAction';
 import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
+import detalleVolante from '../Actions/Volantes/detalleVolante';
 
 const ProductosDatatable = (props) => {
 
@@ -34,10 +35,10 @@ const ProductosDatatable = (props) => {
         {
             name: 'DETALLE',
             selector: row => 
-                <NavLink id="RouterNavLink" to="/detalleVolante">
+                <NavLink id="RouterNavLink" to="/volante">
            
                     <a style={{fontSize:'30px',color:'aquamarine'}} onClick={()=>{
-                        
+                        dispatch(detalleVolante(row,row.productos))
                     }}><i class="fa-solid fa-file-lines"></i></a>
            
                 </NavLink>   
@@ -65,7 +66,7 @@ const stateMapToPros = state => {
 }
 
 const mapDispatchToProps = () => ({
-
+    detalleVolante
 })
 
 

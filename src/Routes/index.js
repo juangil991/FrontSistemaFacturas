@@ -10,6 +10,7 @@ import Volantes from "../Components/Volantes";
 import HistorialFacturas from "../Components/HistorialFacturas";
 import DetalleFactura from "../Components/DetalleFactura";
 import HistorialVolantes from "../Components/HistorialVolantes";
+import DetalleProvedor from "../Components/DetalleProvedor";
 
 export const RoutesPath = () => {
   return (
@@ -27,6 +28,7 @@ export const RoutesPath = () => {
         <Route path="/productos" element={<ProductoComponent />} />
         <Route path="/provedor" element={<Volantes />}/>
         <Route path="/volantes" element={<HistorialVolantes/>}/>
+        <Route path="/volante" element={<DetalleProvedor/>}/>
       </Routes>
     </BrowserRouter>
   );

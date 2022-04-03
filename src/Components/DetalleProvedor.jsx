@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 
 
-const DetalleFactura = (props) => {
+const DetalleProvedor = (props) => {
 
 
     const columns = [
@@ -30,21 +30,20 @@ const DetalleFactura = (props) => {
 
     const data = [
         {
-            name: 'Consecutivo', input: props.factura.id
+            name: 'Consecutivo', input: props.volante.id
         },
         {
-            name: 'Nombre del Cliente', input: props.factura.nombreCliente
+            name: 'Nombre del Cliente', input: props.volante.nombreProvedor
         },
 
         {
-            name: 'Documento Cliente', input: props.factura.documentoCliente
+            name: 'Documento Cliente', input: props.volante.telefonoProvedor
         },
 
         {
-            name: 'Nombre del Cajero', input: props.factura.nombreCajero
+            name: 'Nombre del Cajero', input: props.volante.documentoProvedor
         },
 
-        { name: 'Fecha', input: props.factura.fecha }
     ]
 
     const column2 = [
@@ -64,21 +63,11 @@ const DetalleFactura = (props) => {
 
     ]
 
-    const column3 = [
-        { name: 'TOTAL PRODUCTOS', },
-        { name: '', },
-        { name: '', selector: row => row.total },
-
-    ]
-
-    const data3 = [
-        { total: props.factura.total }
-    ]
 
     return (<>
 
         <div className="table-responsive">
-            <b style={{ color: 'black', fontSize: '40px', fontFamily: 'Oswald sans-serif' }}>FACTURA</b>
+            <b style={{ color: 'black', fontSize: '40px', fontFamily: 'Oswald sans-serif' }}>Volante</b>
             <br />
             <DataTable
                 columns={columns}
@@ -88,12 +77,9 @@ const DetalleFactura = (props) => {
                 columns={column2}
                 data={props.productos}
             />
-            <DataTable
-                columns={column3}
-                data={data3}
-            />
+
             <br />
-            <NavLink id="RouterNavLink" to="/facturas">
+            <NavLink id="RouterNavLink" to="/Volantes">
                 <button className="button is-link" style={{ left: '20px' }}>REGRESAR</button>
             </NavLink>
         </div>
@@ -102,9 +88,9 @@ const DetalleFactura = (props) => {
 
 const stateMapToPros = state => {
     return {
-        factura: state.detalleFactura.factura,
-        productos: state.detalleFactura.productos,
+        volante: state.detalleVolante.Volante,
+        productos: state.detalleVolante.productos,
     }
 }
 
-export default connect(stateMapToPros)(DetalleFactura)
+export default connect(stateMapToPros)(DetalleProvedor)

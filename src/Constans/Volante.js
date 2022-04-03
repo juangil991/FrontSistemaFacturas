@@ -27,4 +27,8 @@ export const postVolante_ActionType = {
    REMOVE_PRODUCTO_VOLANTE:"REMOVE_PRODUCTOVOLANTE",
    REMOVE_ALL_VOLANTE:"REMOVE_ALL_VOLANTE"
 }
- export default{getVolante_ActionType, postVolante_ActionType, putVolante_ActionType, deleteVolante_ActionType}
+
+export const detalleVolante_ActionType={
+   VIEW_VOLANTE_DETAIL:"VIEW_VOLANTE_DETAIL"
+}
+ export default{getVolante_ActionType, postVolante_ActionType, putVolante_ActionType, deleteVolante_ActionType, detalleVolante_ActionType}
