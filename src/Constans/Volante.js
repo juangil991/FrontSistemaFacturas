@@ -21,5 +21,10 @@ export const postVolante_ActionType = {
     DELETE_VOLANTE_SUCCESS:'DELETE_VOLANTE_SUCCESS',
     DELETE_VOLANTE_FAILURE:'DELETE_VOLANTE_FAILURE'
  }
-
+ 
+ export const productoVolante_ActionType ={
+   ADD_PRODUCTO_VOLANTE:"ADD_PRODUCTO_VOLANTE",
+   REMOVE_PRODUCTO_VOLANTE:"REMOVE_PRODUCTOVOLANTE",
+   REMOVE_ALL_VOLANTE:"REMOVE_ALL_VOLANTE"
+}
  export default{getVolante_ActionType, postVolante_ActionType, putVolante_ActionType, deleteVolante_ActionType}

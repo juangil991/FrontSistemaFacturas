@@ -74,7 +74,7 @@ const Venta2 = (props) => {
             selector: row => row.totalProducto},
 
         {name: 'ELIMINAR PRODUCTOS',
-            selector: row => <NavLink to="/Venta"><button className="button is-danger"
+            selector: row => <NavLink id="RouterNavLink" to="/Venta"><button className="button is-danger"
                 onClick={() => {
 
                     dispatch(props.fetchProductoAddCantidades(row.id, row, row.cantidadProducto));

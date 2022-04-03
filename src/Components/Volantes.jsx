@@ -6,6 +6,7 @@ import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
 import { fetchProductoAddCantidades } from '../Actions/Factura/agregarProductoFactura';
+import ProductoMenuInventario from '../Actions/Producto/productosMenuAction'
 
 
 const Venta2 = (props) => {
@@ -69,14 +70,14 @@ const Venta2 = (props) => {
         {name: 'PRECIO',
             selector: row => row.precioProducto },
 
-        {name: 'TOTAL',
+        {name: '',
             selector: row => row.totalProducto},
 
         {name: 'ELIMINAR PRODUCTOS',
-            selector: row => <NavLink to="/Venta"><button className="button is-danger"
+            selector: row => <NavLink  id="RouterNavLink" to="/Venta"><button className="button is-danger"
                 onClick={() => {
 
-                    dispatch(props.fetchProductoAddCantidades(row.id, row, row.cantidadProducto));
+                    dispatch(props.fetchVolanteAddCantidades(row.id, row, row.cantidadProducto));
                 }}
             >
                 <a><i className="fa-solid fa-trash-can"></i></a>
@@ -84,32 +85,20 @@ const Venta2 = (props) => {
 
     ]
 
-    const column3 = [
-        {name: 'TOTAL PRODUCTOS', },
-        {name: '',},
-        {name: '',},
-        {name: '',selector: row => row.total}, 
-        {name: '' },
-
-    ]
-
-    const data3 = [
-        {total: props.total}
-    ]
 
     return (<>
 
         <div className="table-responsive">
             <br />
-        <NavLink to="/productos2"><button className="button is-dark">AGREGAR PRODUCTOS</button></NavLink>
+        <NavLink to="/productos2"><button className="button is-dark"
+           onClick={()=>{
+            dispatch(props.ProductoMenuInventario("volante"))
+        
+        }}>AGREGAR PRODUCTOS</button></NavLink>
             
             {props.productos.length > 0 && <DataTable
                 columns={column2}
                 data={props.productos}
-            />}
-            {props.productos.length > 0 && <DataTable
-                columns={column3}
-                data={data3}
             />}
                         <DataTable
                 columns={columns}
@@ -129,12 +118,12 @@ const Venta2 = (props) => {
 
 const stateMapToPros = state => {
     return {
-        productos: state.agregarProductoFactura.productos,
+        productos: state.productoVolante.productos,
         total: state.agregarProductoFactura.total
     }
 }
 const mapDispatchToProps = () => ({
-    fetchProductoAddCantidades, fetchFacturaPost
+    fetchProductoAddCantidades, fetchFacturaPost,ProductoMenuInventario
 })
 
 export default connect(stateMapToPros, mapDispatchToProps)(Venta2)
