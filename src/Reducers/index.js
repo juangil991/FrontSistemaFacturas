@@ -7,11 +7,12 @@ import agregarProductoFactura from "../Reducers/Factura/agregarProductoFactura";
 import postFactura from "./Factura/postFactura";
 import productosMenu from "./Productos/productosMenu"
 import productoVolante from "./Volante/productoVolante";
-
+import getFactura from "./Factura/getFactura";
+import detalleFactura from "./Factura/detalleFactura";
 
 const rootReducers=combineReducers({
     getProductos, deleteProductos,postProductos,putProductos,agregarProductoFactura,postFactura,
-    productosMenu, productoVolante
+    productosMenu, productoVolante,getFactura,detalleFactura
 
 });
 

@@ -25,7 +25,7 @@ export const fetchGetFacturaError=(error)=>async(dispatch)=>{
 const fetchFacturaGet=(id)=>{
     return(dispatch)=>{
         dispatch(fetchGetFacturaRequest(id));
-        fetch(`http://localhost:8080/productos`,{
+        fetch(`http://localhost:8080/facturas`,{
             method: 'GET', // *GET, POST, PUT, DELETE, etc.
             headers: {
                 'Content-Type': 'application/json'

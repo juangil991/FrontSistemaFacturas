@@ -28,4 +28,9 @@ export const postFactura_ActionType = {
      REMOVE_ALL_FACTURA:"REMOVE_ALL_FACTURA"
  }
 
- export default{getFactura_ActionType, postFactura_ActionType, putFactura_ActionType, deleteFactura_ActionType,  añadirProductoFactura_ActionType}
+ export const detalleFactura_ActionType={
+    VIEW_FACTURA_DETAIL:"VIEW_FACTURA_DETAIL"
+ }
+
+ export default{getFactura_ActionType, postFactura_ActionType,
+    putFactura_ActionType, deleteFactura_ActionType,  añadirProductoFactura_ActionType}

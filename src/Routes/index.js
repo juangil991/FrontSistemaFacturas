@@ -7,6 +7,8 @@ import VentaComponent from "../Components/Venta";
 import ProductosDatatable from "../Components/ProductosDatatable";
 import Venta2 from "../Components/Venta2";
 import Volantes from "../Components/Volantes";
+import HistorialFacturas from "../Components/HistorialFacturas";
+import DetalleFactura from "../Components/DetalleFactura";
 
 export const RoutesPath = () => {
   return (
@@ -15,7 +17,9 @@ export const RoutesPath = () => {
       <Routes>
         <Route path="/productos2" element={<ProductosDatatable/>}/>
         <Route path="/" element={<VentaComponent />} />
+        <Route path="/facturas" element={<HistorialFacturas/>}/>
         <Route path="/venta" element={<Venta2 />} />
+        <Route path="/detalleFactura" element={<DetalleFactura />} />
         <Route path="/ingresar" element={<Ingresar />} />
         <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/registrarse" element={<Registrarse />} />

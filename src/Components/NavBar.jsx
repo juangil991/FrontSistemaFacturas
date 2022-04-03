@@ -39,7 +39,7 @@ const NavBar = (props) => {
                         </a>
                     </li>
                     </NavLink>
-                    <NavLink style={{color:'white'}} id="RouterNavLink" to="/productos">
+                    <NavLink style={{color:'white'}} id="RouterNavLink" to="/facturas">
                     <li>
                         <a>
                             <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
