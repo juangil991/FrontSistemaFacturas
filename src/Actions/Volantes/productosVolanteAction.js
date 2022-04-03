@@ -54,9 +54,9 @@ export const fetchVolanteAddCantidades=(id,producto,cantidad)=>{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(request)
-        }).then(Response=>{
+        }).then(
             dispatch(dispatch(addProductoVolante(producto,cantidad)))
-        });
+        );
     }
 
 }

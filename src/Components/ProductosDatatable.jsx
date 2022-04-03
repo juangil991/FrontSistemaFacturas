@@ -37,7 +37,7 @@ const ProductosDatatable = (props) => {
         {
             name: 'CANTIDAD',
             selector: row => <div>
-                <td>{props.tipo === "factura" && <input defaultValue={1} class="input is-primary" type="number"
+                <td>{props.tipo !== "menu" && <input defaultValue={1} class="input is-primary" type="number"
                     onChange={(e) => {
                         e.target.value > 0 ? setCantidad(e.target.value) : setCantidad(1)
                         e.target.value < row.cantidadProducto ? setCantidad(e.target.value) : e.target.value = row.cantidadProducto

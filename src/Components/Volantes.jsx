@@ -5,7 +5,8 @@ import fetchFacturaPost from '../Actions/Factura/postFacturaAction';
 import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
-import { fetchProductoAddCantidades } from '../Actions/Factura/agregarProductoFactura';
+import { fetchProductoAddCantidades} from '../Actions/Factura/agregarProductoFactura';
+import { fetchVolanteRestarCantidad } from '../Actions/Volantes/productosVolanteAction';
 import ProductoMenuInventario from '../Actions/Producto/productosMenuAction'
 
 
@@ -74,14 +75,14 @@ const Venta2 = (props) => {
             selector: row => row.totalProducto},
 
         {name: 'ELIMINAR PRODUCTOS',
-            selector: row => <NavLink  id="RouterNavLink" to="/Venta"><button className="button is-danger"
+            selector: row =><button className="button is-danger"
                 onClick={() => {
 
-                    dispatch(props.fetchVolanteAddCantidades(row.id, row, row.cantidadProducto));
+                    dispatch(props.fetchVolanteRestarCantidad(row.id, row, row.cantidadProducto));
                 }}
             >
                 <a><i className="fa-solid fa-trash-can"></i></a>
-            </button></NavLink>}
+            </button>}
 
     ]
 
@@ -90,7 +91,7 @@ const Venta2 = (props) => {
 
         <div className="table-responsive">
             <br />
-        <NavLink to="/productos2"><button className="button is-dark"
+        <NavLink to="/productos2"><button className="button is-dark" style={{ left: '20px' }}
            onClick={()=>{
             dispatch(props.ProductoMenuInventario("volante"))
         
@@ -123,7 +124,7 @@ const stateMapToPros = state => {
     }
 }
 const mapDispatchToProps = () => ({
-    fetchProductoAddCantidades, fetchFacturaPost,ProductoMenuInventario
+    fetchProductoAddCantidades, fetchFacturaPost,ProductoMenuInventario,fetchVolanteRestarCantidad
 })
 
 export default connect(stateMapToPros, mapDispatchToProps)(Venta2)
