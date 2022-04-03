@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import fetchFacturaPost from '../Actions/Factura/postFacturaAction';
+import fetchVolantePost from '../Actions/Volantes/postVolanteAction'
 import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
@@ -14,7 +14,7 @@ const Venta2 = (props) => {
     const dispatch = useDispatch();
     const [nombre,setNombre]=useState();
     const [documento,setDocumento]=useState()
-    const [nombreCajero,setNombreCajero]=useState()
+    const [telefono,setTelefono]=useState()
     const [fecha,setFecha]=useState()
     const columns = [
         {name: 'CONCEPTO',
@@ -47,7 +47,7 @@ const Venta2 = (props) => {
         {name: 'Telefono Provedor', input: <div>
                 <td><input className="input is-primary" type="text" style={{ width: '300px' }}
                    onChange={(e)=>{
-                    setNombreCajero(e.target.value)
+                    setTelefono(e.target.value)
                     console.log(props.productos)
                 }} 
                 /></td></div>
@@ -81,7 +81,7 @@ const Venta2 = (props) => {
                     dispatch(props.fetchVolanteRestarCantidad(row.id, row, row.cantidadProducto));
                 }}
             >
-                <a><i className="fa-solid fa-trash-can"></i></a>
+                <a style={{color:'black',fontSize:'23px'}}><i className="fa-solid fa-trash-can"></i></a>
             </button>}
 
     ]
@@ -90,6 +90,7 @@ const Venta2 = (props) => {
     return (<>
 
         <div className="table-responsive">
+        <b style={{color:'black',fontSize:'40px',fontFamily: 'Oswald sans-serif'}}>VOLANTE</b>
             <br />
         <NavLink to="/productos2"><button className="button is-dark" style={{ left: '20px' }}
            onClick={()=>{
@@ -108,7 +109,7 @@ const Venta2 = (props) => {
             <br />
             <button className="button is-link" style={{ left: '20px' }}
                onClick={()=>{
-                dispatch(props.fetchFacturaPost(nombre,documento,nombreCajero,fecha,props.productos,props.total))
+                dispatch(props.fetchVolantePost(nombre,documento,telefono,props.productos))
             }} 
             
             >GENERAR VOLANTE</button>
@@ -124,7 +125,7 @@ const stateMapToPros = state => {
     }
 }
 const mapDispatchToProps = () => ({
-    fetchProductoAddCantidades, fetchFacturaPost,ProductoMenuInventario,fetchVolanteRestarCantidad
+    fetchProductoAddCantidades, fetchVolantePost,ProductoMenuInventario,fetchVolanteRestarCantidad
 })
 
 export default connect(stateMapToPros, mapDispatchToProps)(Venta2)

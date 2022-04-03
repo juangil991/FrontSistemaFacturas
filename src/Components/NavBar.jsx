@@ -35,7 +35,7 @@ const NavBar = (props) => {
                     <li>
                         <a>
                             <span class="icon is-small"><i class="fas fa-shop" aria-hidden="true"></i></span>
-                            <span>Proovedores</span>
+                            <span>Volante</span>
                         </a>
                     </li>
                     </NavLink>
@@ -51,7 +51,7 @@ const NavBar = (props) => {
                     <li>
                         <a>
                             <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-                            <span>Volantes</span>
+                            <span>Provedores</span>
                         </a>
                     </li>
                     </NavLink>

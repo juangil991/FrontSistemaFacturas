@@ -1,9 +1,10 @@
 import { postVolante_ActionType as ActionType } from "../../Constans/Volante";
+import { removeAllProductoVolante } from "./productosVolanteAction";
 
-export const fetchPostVolanteRequest=(url)=>async(dispatch)=>{
+export const fetchPostVolanteRequest=()=>async(dispatch)=>{
     dispatch({
         type: ActionType.POST_VOLANTE_REQUEST,
-        result: url
+        result: 'Success'
     })
 }
 
@@ -22,19 +23,30 @@ export const fetchPostVolanteError=(error)=>async(dispatch)=>{
 }
 
 
-const fetchVolantePost=(id)=>{
+const fetchVolantePost=(nombre,documento,telefono,productos)=>{
+
+    const request={
+        "nombreProvedor":nombre,
+        "telefonoProvedor":telefono,
+        "documentoProvedor":documento,
+        "productos":productos
+
+    }
+
     return(dispatch)=>{
-        dispatch(fetchGetVolanteRequest(id));
-        fetch(`http://localhost:8080/Volantes`,{
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        dispatch(fetchPostVolanteRequest());
+        fetch(`http://localhost:8080/volante/crear/save`,{
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body: JSON.stringify(request)
         }).then(Response=>Response.json())
         .then(json=>{
-            dispatch(fetchGetVolanteSuccess(json))
-        }).catch(error=>{
-            dispatch(fetchGetVolanteError("no se pudo eliminar el Volante seleccionado"))
+            dispatch(fetchPostVolanteSuccess(json))
+        }).then(dispatch(removeAllProductoVolante()))
+        .catch(error=>{
+            dispatch(fetchPostVolanteError("no se pudo eliminar el Volante seleccionado"))
         });
     }
 

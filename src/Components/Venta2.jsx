@@ -80,7 +80,7 @@ const Venta2 = (props) => {
                     dispatch(props.fetchProductoAddCantidades(row.id, row, row.cantidadProducto));
                 }}
             >
-                <a><i className="fa-solid fa-trash-can"></i></a>
+                <a style={{color:'black',fontSize:'23px'}}><i className="fa-solid fa-trash-can"></i></a>
             </button></NavLink>}
 
     ]
@@ -101,6 +101,7 @@ const Venta2 = (props) => {
     return (<>
 
         <div className="table-responsive">
+            <b style={{color:'black',fontSize:'40px',fontFamily: 'Oswald sans-serif'}}>VENTAS</b>
             <br />
         <NavLink to="/productos2"><button className="button is-dark" style={{ left: '20px' }}
         onClick={()=>{

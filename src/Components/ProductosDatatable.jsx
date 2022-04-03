@@ -35,35 +35,38 @@ const ProductosDatatable = (props) => {
             selector: row => row.precioProducto
         },
         {
-            name: 'CANTIDAD',
+            name:props.tipo !== "menu"?'CANTIDAD':'ESTADO',
             selector: row => <div>
                 <td>{props.tipo !== "menu" && <input defaultValue={1} class="input is-primary" type="number"
                     onChange={(e) => {
                         e.target.value > 0 ? setCantidad(e.target.value) : setCantidad(1)
-                        e.target.value < row.cantidadProducto ? setCantidad(e.target.value) : e.target.value = row.cantidadProducto
+                        props.tipo === "factura" && <div>{e.target.value < row.cantidadProducto ? setCantidad(e.target.value) :
+                         e.target.value = row.cantidadProducto}</div>
                         console.log(props.tipo)
                     }}
-                />}</td></div>
+                />}{props.tipo === "menu"&& <div><a><span style={{color:'green', fontSize:'33px'}}>
+                    <i class="fa-solid fa-square-check"></i></span></a><a><span style={{color:'yellow', fontSize:'33px'}}>
+                    <i class="fa-solid fa-triangle-exclamation"></i></span></a></div>}</td></div>
         },
         {
             name: 'AÑADIR PRODUCTO',
             selector: row => <div><NavLink id="RouterNavLink" to="/Venta">
-                {props.tipo === "factura" && <button class="button is-link"
+                {props.tipo === "factura" && <button class="button is-black"
                     onClick={() => {
                         dispatch(props.fetchProductoRestarCantidad(row.id, row, cantidad));
 
                     }}
                 >
-                    <a><i class="fa-solid fa-circle-plus"></i></a>
+                    <a style={{fontSize:'30px',color:'green'}}><i class="fa-solid fa-circle-plus"></i></a>
                 </button>}
                 </NavLink>
                 <NavLink id="RouterNavLink" to="/provedor">
-                {props.tipo === "volante" && <button class="button is-link"
+                {props.tipo === "volante" && <button class="button is-black"
                     onClick={() => {
                         dispatch(props.fetchVolanteAddCantidades(row.id, row, cantidad));
                     }}
                 >
-                    <a><i class="fa-solid fa-circle-plus"></i></a>
+                    <a style={{fontSize:'30px',color:'green'}} ><i class="fa-solid fa-circle-plus"></i></a>
                 </button>}
                 </NavLink>
                 </div>
