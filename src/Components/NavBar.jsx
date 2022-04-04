@@ -16,7 +16,6 @@ const NavBar = (props) => {
       
         <nav class="navbar is-black" >
             <div class="tabs is-centered is-boxed is-medium">
-            <div class="table-responsive">
                 <ul>
                     <NavLink style={{color:'white'}} id="RouterNavLink" to="/">
                         <li>
@@ -60,15 +59,28 @@ const NavBar = (props) => {
                         </a>
                     </li>
                     </NavLink>
+                    <NavLink style={{color:'white'}} id="RouterNavLink" to="/volantes">
+                    <li>
+                        <a>
+                            <span class="icon is-small"><i class="fa-solid fa-gear"></i></span>
+                            <span>Config</span>
+                        </a>
+                    </li>
+                    </NavLink>
+                    <NavLink style={{color:'white'}} id="RouterNavLink" to="/">
+                    <li>
+                        <a  onClick={()=>{
+                                logoutUser();}}>
+                            <span class="icon is-small"
+                           
+                            ><i class="fa-solid fa-right-from-bracket"></i></span>
+                            <span>Logout</span>
+                        </a>
+                    </li>
+                    </NavLink>
                    
-                </ul>
-                
-                </div>
+                </ul>              
             </div>
-            <NavLink to="/">
-            <button className='button is-link' onClick={()=>{
-                logoutUser();
-            }} style={{right:'50px', top:'30px'}}>logout</button></NavLink>
         </nav>
     </>);
 }

@@ -3,8 +3,8 @@ import {NavLink} from 'react-router-dom';
 import "../Css/App.css" 
 import 'boxicons'
 import { signInWithEmailAndPassword, onAuthStateChanged,getAuth } from 'firebase/auth';
-import { auth } from "../Config/Firebase/FirebaseSDK";
-import Venta2 from './Venta2';
+import { GoogleAuthProvider,signInWithRedirect  } from "firebase/auth";
+
 
 
 
@@ -15,6 +15,9 @@ const Ingresar = (props) => {
     const [error,setError]=useState("");
     const [pass,setPass]=useState();
     const [email,setEmail]=useState();
+    const provider = new GoogleAuthProvider();
+
+    const auth = getAuth();
 
     const signInUser=(email,password)=>{
         //setLoading(true);
@@ -42,7 +45,9 @@ const Ingresar = (props) => {
                       
                         ></i>
                     </div>
-                    <div class="border-icon1">
+                    <div class="border-icon1" onClick={()=>{
+                        signInWithRedirect(auth, provider);
+                    }}>
                         <i class="fa-brands fa-google"
                        
                         ></i>

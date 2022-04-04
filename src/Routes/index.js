@@ -11,14 +11,15 @@ import HistorialFacturas from "../Components/HistorialFacturas";
 import DetalleFactura from "../Components/DetalleFactura";
 import HistorialVolantes from "../Components/HistorialVolantes";
 import DetalleProvedor from "../Components/DetalleProvedor";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useState } from "react";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider,getRedirectResult } from "firebase/auth";
+import { useState, useEffect} from "react";
 
 export const RoutesPath = () => {
   
   const [validate,setValidate]=useState();
 
   const auth = getAuth();
+  useEffect(()=>{
   onAuthStateChanged(auth, (user) => {
     if (user) {
   
@@ -29,6 +30,21 @@ export const RoutesPath = () => {
       setValidate(false)
     }
   });
+  getRedirectResult(auth)
+  .then((result) => {
+    
+    const credential = GoogleAuthProvider.credentialFromResult(result);
+    const token = credential.accessToken;
+    const user = result.user;
+    setValidate(true)
+  }).catch((error) => { 
+    const errorCode = error.code;
+    const errorMessage = error.message; 
+    const email = error.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+    setValidate(false)
+  });
+},[])
 
 
   return ( <>
