@@ -18,7 +18,7 @@ const NavBar = (props) => {
             <div class="tabs is-centered is-boxed is-medium">
             <div class="table-responsive">
                 <ul>
-                    <NavLink style={{color:'white'}} id="RouterNavLink" to="/Venta">
+                    <NavLink style={{color:'white'}} id="RouterNavLink" to="/">
                         <li>
                             <a>
                                 <span class="icon is-small"><i class="fas fa-cart-plus" aria-hidden="true"></i></span>

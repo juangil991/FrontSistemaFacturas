@@ -42,7 +42,7 @@ const Registrarse = (props) => {
                 <div className="message1">
                     <h2>BIENVENDIDO AL SISTEMA DE FACTURAS</h2>
                     <p>Inicia sesion si ya tienes una cuenta</p>
-                    <NavLink to="/ingresar">
+                    <NavLink to="/">
                         <button className='singn-up-btn1'>Iniciar Sesion</button>
                     </NavLink>
                 </div>
@@ -75,12 +75,12 @@ const Registrarse = (props) => {
                     setPass( e.target.value)
                 }}/>
                 <span>Minimo 6 cararcteres</span>
+                <NavLink to="/">
                 <input type="button" value="Registrarse" 
                 onClick={()=>{
                     registerUser(email,name,pass)
-                }}
-                
-                />
+                }}/>
+                </NavLink>
             </form>
         </div>
     </>);

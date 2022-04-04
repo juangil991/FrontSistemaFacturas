@@ -45,8 +45,8 @@ export const RoutesPath = () => {
         <Route path="/provedor" element={<Volantes />}/>
         <Route path="/volantes" element={<HistorialVolantes/>}/>
         <Route path="/volante" element={<DetalleProvedor/>}/>
-      </Routes> }{
-       !validate &&<Routes>
+      </Routes> }
+      {!validate &&<Routes>
          <Route path="/" element={<Ingresar />} />
          <Route path="/registrarse" element={<Registrarse />} /> 
         </Routes>
