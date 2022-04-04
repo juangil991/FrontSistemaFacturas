@@ -152,7 +152,7 @@ const Venta2 = (props) => {
                         head:[["","","","TOTAL"]],
                         body:total
                     })
-                   doc.save("prueba")
+                   doc.save("Factura")
                 dispatch(props.fetchFacturaPost(nombre,documento,nombreCajero,fecha,props.productos,props.total))
             }} 
             
