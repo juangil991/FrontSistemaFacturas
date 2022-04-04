@@ -11,7 +11,7 @@ import HistorialFacturas from "../Components/HistorialFacturas";
 import DetalleFactura from "../Components/DetalleFactura";
 import HistorialVolantes from "../Components/HistorialVolantes";
 import DetalleProvedor from "../Components/DetalleProvedor";
-import { getAuth, onAuthStateChanged, GoogleAuthProvider,getRedirectResult } from "firebase/auth";
+import { getAuth, onAuthStateChanged, GoogleAuthProvider,getRedirectResult,GithubAuthProvider } from "firebase/auth";
 import { useState, useEffect} from "react";
 
 export const RoutesPath = () => {
@@ -32,9 +32,15 @@ export const RoutesPath = () => {
   });
   getRedirectResult(auth)
   .then((result) => {
+    const credentialGit = GithubAuthProvider.credentialFromResult(result);
+    if (credentialGit) {
+      const tokenGit = credentialGit.accessToken;
+      console.log("hola")
+      setValidate(true)
+    }
+    const credentialGoogle = GoogleAuthProvider.credentialFromResult(result);
     
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
+    const tokenGoogle = credentialGoogle.accessToken;
     const user = result.user;
     setValidate(true)
   }).catch((error) => { 
@@ -42,8 +48,11 @@ export const RoutesPath = () => {
     const errorMessage = error.message; 
     const email = error.email;
     const credential = GoogleAuthProvider.credentialFromError(error);
+    const credentialgit = GithubAuthProvider.credentialFromError(error);
+    console.log(errorMessage)
     setValidate(false)
   });
+
 },[])
 
 

@@ -3,24 +3,25 @@ import {NavLink} from 'react-router-dom';
 import "../Css/App.css" 
 import 'boxicons'
 import { signInWithEmailAndPassword, onAuthStateChanged,getAuth } from 'firebase/auth';
-import { GoogleAuthProvider,signInWithRedirect  } from "firebase/auth";
+import { GoogleAuthProvider,signInWithRedirect,GithubAuthProvider  } from "firebase/auth";
 
 
 
 
 
 const Ingresar = (props) => {
+
     const [user,setUser]=useState();
     const [loading, setLoading]=useState();
     const [error,setError]=useState("");
     const [pass,setPass]=useState();
     const [email,setEmail]=useState();
-    const provider = new GoogleAuthProvider();
+    const googleProvider = new GoogleAuthProvider();
+    const githubProvider= new GithubAuthProvider();
 
     const auth = getAuth();
 
     const signInUser=(email,password)=>{
-        //setLoading(true);
         signInWithEmailAndPassword(auth, email, password)
           .then((res) => console.log(res))
           .catch((err) => setError(err.code))
@@ -40,13 +41,15 @@ const Ingresar = (props) => {
             <form className='formulario1'>
         <h2 className='create-account1'>Iniciar Sesion</h2>
         <div class="iconos1">
-                    <div class="border-icon1">
+                    <div class="border-icon1" onClick={()=>{
+                        signInWithRedirect(auth, githubProvider);
+                    }}>
                         <i class="fa-brands fa-github"
                       
                         ></i>
                     </div>
                     <div class="border-icon1" onClick={()=>{
-                        signInWithRedirect(auth, provider);
+                        signInWithRedirect(auth, googleProvider);
                     }}>
                         <i class="fa-brands fa-google"
                        
@@ -62,7 +65,7 @@ const Ingresar = (props) => {
             <input type="email" placeholder='Email'
             onChange={(e)=>{
                 setEmail( e.target.value)
-                console.log(getAuth)
+                console.log(auth)
             }}
             />
             <input type="password" placeholder='contraseña'
