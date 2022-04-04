@@ -6,7 +6,9 @@ import styledComponents from 'styled-components';
 import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
 import { fetchProductoAddCantidades } from '../Actions/Factura/agregarProductoFactura';
-import ProductoMenuInventario from '../Actions/Producto/productosMenuAction'
+import ProductoMenuInventario from '../Actions/Producto/productosMenuAction';
+
+
 
 
 const Venta2 = (props) => {
@@ -99,7 +101,7 @@ const Venta2 = (props) => {
     ]
 
     return (<>
-
+       
         <div className="table-responsive">
             <b style={{color:'black',fontSize:'40px',fontFamily: 'Oswald sans-serif'}}>VENTAS</b>
             <br />
@@ -130,6 +132,7 @@ const Venta2 = (props) => {
             >GENERAR FACTURA</button>
 
         </div>
+    
     </>);
 }
 
