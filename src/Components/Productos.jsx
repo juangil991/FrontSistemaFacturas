@@ -3,102 +3,196 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import fetchProductoGet from '../Actions/Producto/getProductoAction';
 import fetchProductoPost from '../Actions/Producto/postProductoAction';
-import {addProductoFactura} from '../Actions/Factura/agregarProductoFactura';
+import { fetchVolanteAddCantidades } from '../Actions/Volantes/productosVolanteAction';
+import { fetchProductoRestarCantidad } from '../Actions/Factura/agregarProductoFactura';
+import styledComponents from 'styled-components';
+import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
+import { Button } from '@material-ui/core';
 
-
-
-const ProductoComponent = (props) => {
+const ProductosDatatable = (props) => {
     const dispatch = useDispatch();
-    const producto=props.productos;
-    const [Nombre,setNombre]=useState();
-    const [Cantidad,setCantidad]=useState();
-    const [Precio,setPrecio]=useState();
-
+    const [cantidad, setCantidad] = useState(1);
+    const [Stock, setStock] = useState(10);
+    const [Nombre, setNombre] = useState();
+    const [Precio, setPrecio] = useState();
+    const [maximo, setMaximo] = useState(30);
+    const [minimo, setMinimo] = useState(5);
+    const [reload,setReload]=useState(false)
     useEffect(() => {
-        console.log(producto)
         dispatch(fetchProductoGet())
-    }, []);
+       setReload(false)
+    }, [reload])
+
+
+    const columns = [
+        {
+            name: 'ID',
+            selector: row => row.id
+        },
+        {
+            name: 'NOMBRE',
+            selector: row => row.nombreProducto
+        },
+        {
+            name: 'STOCK',
+            selector: row => row.cantidadProducto
+        },
+        {
+            name: 'PRECIO',
+            selector: row => row.precioProducto
+        },
+        {
+            name: props.tipo !== "menu" ? 'CANTIDAD' : 'ESTADO',
+            selector: row => <div>
+                <td>{props.tipo !== "menu" && <input defaultValue={1} class="input is-primary" type="number"
+                    onChange={(e) => {
+                        e.target.value > 0 ? setCantidad(e.target.value) : setCantidad(1)
+                        props.tipo === "factura" && <div>{e.target.value < row.cantidadProducto ? setCantidad(e.target.value) :
+                            e.target.value = row.cantidadProducto}</div>
+                        console.log(props.tipo)
+                    }}
+                />}{row.maximaCantidad>row.cantidadProducto && row.minimaCantidad<row.cantidadProducto? props.tipo === "menu" && 
+                <div><a><span style={{ color: 'green', fontSize: '33px' }}>
+                    <i class="fa-solid fa-square-check"></i></span></a></div>: props.tipo === "menu" && <div>
+                    <a><span style={{ color: 'yellow', fontSize: '33px' }}>
+                        <i class="fa-solid fa-triangle-exclamation"></i></span></a>                        
+                        </div>}</td></div>
+        },
+        {
+            name: props.tipo !== "menu" ? 'AÑADIR PRODUCTO' : 'DESCRIPCION',
+            selector: row => <div><NavLink id="RouterNavLink" to="/">
+                {props.tipo === "factura" && <button class="button is-black"
+                    onClick={() => {
+                        dispatch(props.fetchProductoRestarCantidad(row.id, row, cantidad));
+
+                    }}
+                >
+                    <a style={{ fontSize: '30px', color: 'green' }}><i class="fa-solid fa-circle-plus"></i></a>
+                </button>}
+            </NavLink>
+                <NavLink id="RouterNavLink" to="/provedor">
+                    {props.tipo === "volante" && <button class="button is-black"
+                        onClick={() => {
+                            dispatch(props.fetchVolanteAddCantidades(row.id, row, cantidad));                          
+                        }}
+                    >
+                        <a style={{ fontSize: '30px', color: 'green' }} ><i class="fa-solid fa-circle-plus"></i></a>
+                    </button>}
+                </NavLink>
+            {row.maximaCantidad>row.cantidadProducto && row.minimaCantidad<row.cantidadProducto && props.tipo === "menu"?  
+                <div>STOCK OK</div>: row.maximaCantidad<row.cantidadProducto?props.tipo === "menu"&&
+                <div>ALTO STOCK</div>:
+                props.tipo === "menu"&&<div>BAJO STOCK</div>                
+                       }</div>
+
+
+
+        },
+    ]
+
+
+    const columnsadd = [
+  
+        {
+            name: 'NOMBRE',
+            selector: row => row.nombreProducto
+        },
+        {
+            name: 'STOCK',
+            selector: row => row.cantidadProducto
+        },
+        {
+            name: 'PRECIO',
+            selector: row => row.precioProducto
+        },
+        {
+            name: 'MAXIMO',
+            selector: row => row.Maximo
+        },
+        {
+            name: 'MINIMO',
+            selector: row => row.Minimo
+        },
+        {
+            name: 'GUARDAR',
+            selector: row => row.guardar
+        },
+
+
+    ]
+
+    const DataAdd = [
+        {       
+            nombreProducto: <input  class="input is-primary" type="text" 
+            onChange={(e)=>{
+                setNombre(e.target.value);
+                console.log(props.productos.maximaCantidad)
+               
+            }}
+            />,
+            cantidadProducto: <input  class="input is-primary" type="number" 
+            onChange={(e)=>{
+                setStock(e.target.value);
+            }}
+            />,
+            precioProducto: <input class="input is-primary" type="number" 
+            onChange={(e)=>{
+                setPrecio(e.target.value);
+            }}
+            />,
+            Maximo: <input class="input is-primary" type="number" 
+            onChange={(e)=>{
+                setMaximo(e.target.value);
+                
+            }}
+            />,
+            Minimo: <input class="input is-primary" type="number" 
+            onChange={(e)=>{
+                setMinimo(e.target.value);
+            }}
+            />,
+            guardar:<a
+            onClick={()=>{
+                dispatch(fetchProductoPost(Nombre,Stock,Precio,maximo,minimo));
+                setReload(true)
+            }}
+            >
+                
+                <span style={{fontSize:'35px', color:'aquamarine'}}><i class="fa-solid fa-floppy-disk"></i></span>
+
+                </a>
+
+        }
+    ]
 
     return (<>
-        <div class="table-container">
-            <table class="table is-fullwidth">
-                <thead className='has-background-dark'>
-                    <tr>
-                        <th style={{ color: "white" }}>ID</th>
-                        <th style={{ color: "white" }}>NOMBRE</th>
-                        <th style={{ color: "white" }}>CANTIDAD</th>
-                        <th style={{ color: "white" }}>PRECIO</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <thead className='has-background-link-dark'>
-                    <tr>
-                        <td></td>
-                        <td><input class="input is-primary" type="text" placeholder="Nombre"
-                        onChange={(e)=>{
-                            setNombre(e.target.value)
-                            console.log(Nombre);
-                        }}/></td>
-                        <td><input class="input is-primary" type="number" placeholder="Cantidad" onChange={(e)=>{
-                            setCantidad(e.target.value)
-                            console.log(Nombre);
-                        }}
-                        /></td>
-                        <td><input class="input is-primary" type="number" placeholder="Precio" 
-                        onChange={(e)=>{
-                            setPrecio(e.target.value);
-                            console.log.apply(Precio)
-                        }}
-                        /></td>
-                        <td>                        
-                            <button class="button is-success"data-target="modal-js-example"
-                            onClick={()=>{
-                                dispatch(fetchProductoPost(Nombre,Cantidad,Precio));
-                            }}
-                            >
-                               Nuevo Producto
-                            </button>                 
-                        </td>
-                    </tr>
-                </thead>
-                <tbody className='has-background-link-dark'>             
-                        {producto.map((p)=>{
-                        return(<>
-                        <tr>
-                        <th style={{ color: "white" }}>{p.id}</th>
-                        <td style={{ color: "white" }}>{p.nombreProducto}</td>
-                        <td style={{ color: "white" }}>{p.cantidadProducto}</td>
-                        <td style={{ color: "white" }}>{p.precioProducto}</td>
-                        <td style={{ color: "white" }}>
-                            <button className="button is-dark" 
-                            onClick={()=>{
-                                console.log(p);
-                                dispatch(props.addProductoFactura(p));
-                            }}
-                            >Añadir</button>
-                            <button className="button is-danger" style={{left:'10px'}} >Eliminar</button>
-                            <button className="button is-link" style={{left:'20px'}}>Editar</button>
-                        </td>
-                        </tr>
-                        </>
-                        )})}
-                </tbody>
-            </table>
-        </div>
+        <b style={{ color: 'black', fontSize: '40px', fontFamily: 'Oswald sans-serif' }}>PRODUCTOS</b>
+        {props.tipo === "menu"&&  <DataTable
+            columns={columnsadd}
+            data={DataAdd}
+            
+        />}
+        <DataTable
+            columns={columns}
+            data={props.productos}
+            pagination
+        />
 
     </>);
 }
 
 const stateMapToPros = state => {
     return {
-        productos:state.getProductos.response
+        productos: state.getProductos.response,
+        estado: state.agregarProductoFactura,
+        tipo: state.productosMenu.menuTypo
     }
 }
 
 const mapDispatchToProps = () => ({
-    addProductoFactura
+    fetchProductoRestarCantidad, fetchVolanteAddCantidades
 })
 
 
-export default connect(stateMapToPros,mapDispatchToProps)(ProductoComponent)
+export default connect(stateMapToPros, mapDispatchToProps)(ProductosDatatable)
