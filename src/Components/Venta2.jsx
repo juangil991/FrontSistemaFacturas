@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import fetchFacturaPost from '../Actions/Factura/postFacturaAction';
@@ -7,6 +7,8 @@ import DataTable, { createTheme } from 'react-data-table-component';
 import { NavLink } from 'react-router-dom';
 import { fetchProductoAddCantidades } from '../Actions/Factura/agregarProductoFactura';
 import ProductoMenuInventario from '../Actions/Producto/productosMenuAction';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable'
 
 
 
@@ -17,6 +19,7 @@ const Venta2 = (props) => {
     const [documento,setDocumento]=useState()
     const [nombreCajero,setNombreCajero]=useState()
     const [fecha,setFecha]=useState()
+    const nombrepdf=nombre;
     const columns = [
         {name: 'CONCEPTO',
             selector: row => row.name},
@@ -27,6 +30,10 @@ const Venta2 = (props) => {
         {name: "",
             selector: row => row.precioProducto},
     ]
+
+    
+            const doc = new jsPDF("p","pt","a4");
+     
 
     const data = [
         {name: 'Nombre del Cliente', input: <div>
@@ -101,8 +108,9 @@ const Venta2 = (props) => {
     ]
 
     return (<>
-       
-        <div className="table-responsive">
+      
+        <div className="table-responsive" >
+        
             <b style={{color:'black',fontSize:'40px',fontFamily: 'Oswald sans-serif'}}>VENTAS</b>
             <br />
         <NavLink to="/productos2"><button className="button is-dark" style={{ left: '20px' }}
@@ -111,11 +119,11 @@ const Venta2 = (props) => {
         }}>
             AGREGAR PRODUCTOS</button></NavLink>
             
-            {props.productos.length > 0 && <DataTable
+            {props.productos.length > 0 && <DataTable id="my-table"
                 columns={column2}
                 data={props.productos}
             />}
-            {props.productos.length > 0 && <DataTable
+            {props.productos.length > 0 && <DataTable 
                 columns={column3}
                 data={data3}
             />}
@@ -124,8 +132,27 @@ const Venta2 = (props) => {
                 data={data}
             />
             <br />
+       
             <button className="button is-link" style={{ left: '20px' }}
-               onClick={()=>{
+               onClick={()=>{ 
+                const data =[nombre,documento,nombreCajero,fecha]
+                   doc.autoTable({
+                       head:[["NombreCliente","Documento","NombreCajero","Fecha"]],
+                       body:[data]
+                   })
+                   const productos = props.productos.map(p=> [p.nombreProducto, p.cantidadProducto
+                    ,p.precioProducto,p.totalProducto]);
+
+                   doc.autoTable({
+                       head:[["Nombre Producto", "Cantidad", "Precio","Total producto"]],
+                       body:productos
+                    })
+                    const total=[["","","",props.total]]
+                    doc.autoTable({
+                        head:[["","","","TOTAL"]],
+                        body:total
+                    })
+                   doc.save("prueba")
                 dispatch(props.fetchFacturaPost(nombre,documento,nombreCajero,fecha,props.productos,props.total))
             }} 
             
