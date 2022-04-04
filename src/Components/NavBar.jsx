@@ -3,10 +3,15 @@ import { connect } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import ProductoMenuInventario from '../Actions/Producto/productosMenuAction'
 import { NavLink } from 'react-router-dom';
+import { auth } from '../Config/Firebase/FirebaseSDK';
+import { signOut } from 'firebase/auth';
 
 
 const NavBar = (props) => {
     const dispatch = useDispatch();
+    const logoutUser=()=>{
+        signOut(auth);
+    }
     return (<>
       
         <nav class="navbar is-black" >
@@ -55,9 +60,15 @@ const NavBar = (props) => {
                         </a>
                     </li>
                     </NavLink>
+                   
                 </ul>
+                
                 </div>
             </div>
+            <NavLink to="/">
+            <button className='button is-link' onClick={()=>{
+                logoutUser();
+            }} style={{right:'50px', top:'30px'}}>logout</button></NavLink>
         </nav>
     </>);
 }

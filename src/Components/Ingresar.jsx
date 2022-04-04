@@ -1,30 +1,76 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import {NavLink} from 'react-router-dom';
 import "../Css/App.css" 
 import 'boxicons'
+import { signInWithEmailAndPassword, onAuthStateChanged,getAuth } from 'firebase/auth';
+import { auth } from "../Config/Firebase/FirebaseSDK";
+import Venta2 from './Venta2';
+
 
 
 
 const Ingresar = (props) => {
+    const [user,setUser]=useState();
+    const [loading, setLoading]=useState();
+    const [error,setError]=useState("");
+    const [pass,setPass]=useState();
+    const [email,setEmail]=useState();
+
+    const signInUser=(email,password)=>{
+        //setLoading(true);
+        signInWithEmailAndPassword(auth, email, password)
+          .then((res) => console.log(res))
+          .catch((err) => setError(err.code))
+          .finally(() => setLoading(false));
+    }
+    useEffect(()=>{
+        setLoading(true)
+      const unsubscribe = onAuthStateChanged(auth,response=>{
+            response? setUser(response):setUser(null)
+            setError("");
+            setLoading(false);
+        })
+        return unsubscribe;
+    },[])
 
     return (<div className="container-form1 singn-in1">
             <form className='formulario1'>
         <h2 className='create-account1'>Iniciar Sesion</h2>
         <div class="iconos1">
                     <div class="border-icon1">
-                        <i class="fa-brands fa-github"></i>
+                        <i class="fa-brands fa-github"
+                      
+                        ></i>
                     </div>
                     <div class="border-icon1">
-                        <i class="fa-brands fa-google"></i>
+                        <i class="fa-brands fa-google"
+                       
+                        ></i>
                     </div>
                     <div class="border-icon1">
-                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-facebook"
+                        
+                        ></i>
                     </div>
                 </div>
             <p className='cuenta-gratis1'>¿Aun no tienes Cuenta?</p>
-            <input type="email" placeholder='Email'/>
-            <input type="password" placeholder='contraseña'/>
-            <input type="button" value="IniciarSesion" />
+            <input type="email" placeholder='Email'
+            onChange={(e)=>{
+                setEmail( e.target.value)
+                console.log(getAuth)
+            }}
+            />
+            <input type="password" placeholder='contraseña'
+            onChange={(e)=>{
+                setPass( e.target.value)
+            }}
+            />
+            <input type="button" value="IniciarSesion" 
+            onClick={()=>{
+                signInUser(email,pass)
+            }}
+            
+            />
         
     </form>
     <div className="welcome-back1">

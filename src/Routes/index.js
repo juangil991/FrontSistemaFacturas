@@ -11,26 +11,50 @@ import HistorialFacturas from "../Components/HistorialFacturas";
 import DetalleFactura from "../Components/DetalleFactura";
 import HistorialVolantes from "../Components/HistorialVolantes";
 import DetalleProvedor from "../Components/DetalleProvedor";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useState } from "react";
 
 export const RoutesPath = () => {
-  return (
+  
+  const [validate,setValidate]=useState();
+
+  const auth = getAuth();
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+  
+      const uid = user.uid;
+      setValidate(true)
+      // ...
+    } else {
+      setValidate(false)
+    }
+  });
+
+
+  return ( <>
+  
     <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path="/productos2" element={<ProductosDatatable/>}/>
-        <Route path="/" element={<VentaComponent />} />
+      {validate&&<NavBar />}
+      {validate&& <Routes>
+        <Route path="/productos2" element={<ProductosDatatable/>}/>   
+        <Route path="/1" element={<VentaComponent />} />
         <Route path="/facturas" element={<HistorialFacturas/>}/>
-        <Route path="/venta" element={<Venta2 />} />
+        <Route path="/" element={<Venta2 />} />
         <Route path="/detalleFactura" element={<DetalleFactura />} />
-        <Route path="/ingresar" element={<Ingresar />} />
-        <Route path="/registrarse" element={<Registrarse />} />
-        <Route path="/registrarse" element={<Registrarse />} />
         <Route path="/productos" element={<ProductoComponent />} />
         <Route path="/provedor" element={<Volantes />}/>
         <Route path="/volantes" element={<HistorialVolantes/>}/>
         <Route path="/volante" element={<DetalleProvedor/>}/>
-      </Routes>
+      </Routes> }{
+       !validate &&<Routes>
+         <Route path="/" element={<Ingresar />} />
+         <Route path="/registrarse" element={<Registrarse />} /> 
+        </Routes>
+
+      }
     </BrowserRouter>
+
+    </>
   );
 };
 
