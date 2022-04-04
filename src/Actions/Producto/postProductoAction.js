@@ -22,11 +22,14 @@ export const fetchPostProductoError=(error)=>async(dispatch)=>{
 }
 
 
-const fetchProductoPost=(nombre,cantidad,precio)=>{
+const fetchProductoPost=(nombre,cantidad,precio,maximo,minimo)=>{
     const request={
         "nombreProducto":nombre,
         "cantidadProducto":cantidad,
-        "precioProducto":precio
+        "precioProducto":precio,
+        "maximaCantidad":maximo,
+        "minimaCantidad":minimo
+
 
     }
     return(dispatch)=>{

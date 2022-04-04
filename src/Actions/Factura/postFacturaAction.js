@@ -46,7 +46,7 @@ const fetchFacturaPost=(nombre,documento,nombreCajero,fecha,productos,total)=>{
             dispatch(fetchPostFacturaSuccess(json))
         }).then(dispatch(removeAllProductoFactura()))
         .catch(error=>{
-            dispatch(fetchPostFacturaError("no se pudo eliminar el Factura seleccionado"))
+            dispatch(fetchPostFacturaError("no se pudo crear el Factura seleccionado"))
         });
     }
 

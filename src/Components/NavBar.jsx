@@ -59,14 +59,6 @@ const NavBar = (props) => {
                         </a>
                     </li>
                     </NavLink>
-                    <NavLink style={{color:'white'}} id="RouterNavLink" to="/volantes">
-                    <li>
-                        <a>
-                            <span class="icon is-small"><i class="fa-solid fa-gear"></i></span>
-                            <span>Config</span>
-                        </a>
-                    </li>
-                    </NavLink>
                     <NavLink style={{color:'white'}} id="RouterNavLink" to="/">
                     <li>
                         <a  onClick={()=>{
